@@ -5,11 +5,11 @@ Requires at least: 4.9
 Tested up to:      4.9
 Stable tag:        0.1.0
 
-A brief description of the plugin.
+A WordPress plugin that enables you to easily designate any category, tag, or custom taxonomy term assigned to any post, page, or custom post type as the primary term.
 
 == Description ==
 
-A WordPress plugin that enables you to easily designate any category, tag, or custom taxonomy term assigned to any post, page, or custom post type as the primary term.
+
 
 == Installation ==
 
