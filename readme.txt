@@ -1,6 +1,6 @@
 === Primary Term ===
-Contributors:      10up
-Tags: 
+Contributors:      heyjones, 10up
+Tags:              taxonomy, term, category, tag, post type, post, page, custom, primary
 Requires at least: 4.9
 Tested up to:      4.9
 Stable tag:        0.1.0
@@ -9,7 +9,7 @@ A brief description of the plugin.
 
 == Description ==
 
-
+A WordPress plugin that enables you to easily designate any category, tag, or custom taxonomy term assigned to any post, page, or custom post type as the primary term.
 
 == Installation ==
 

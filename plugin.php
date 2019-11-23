@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Primary Term
  * Plugin URI:  https://github.com/heyjones/wp-primary-term
- * Description: 
+ * Description: A WordPress plugin that enables you to easily designate any category, tag, or custom taxonomy term assigned to any post, page, or custom post type as the primary term.
  * Version:     0.1.0
  * Author:      heyjones
  * Author URI:  https://heyjones.com
