@@ -162,13 +162,56 @@ function admin_scripts() {
 		true
 	);
 
-	wp_enqueue_script(
+	wp_register_script(
 		'primary_term_admin',
 		script_url( 'admin', 'admin' ),
 		[],
 		PRIMARY_TERM_VERSION,
 		true
 	);
+
+	$current_screen = get_current_screen();
+
+	if( ! $current_screen->is_block_editor ){
+		// Get the current post
+		global $post;
+		// Get the current post type
+		$post_type = $current_screen->post_type;
+		// Get the post type taxonomies
+		$taxonomies = get_object_taxonomies( $post_type );
+		// Set an empty array
+		$post_type_taxonomies = array();
+		// Create an array of taxonomy terms
+		foreach( (array) $taxonomies as $taxonomy ) {
+			// Get the taxonomy object
+			$taxonomy = get_taxonomy ( $taxonomy );
+			$post_type_taxonomies[$taxonomy->name]['label'] = $taxonomy->labels->singular_name;
+			$post_type_taxonomies[$taxonomy->name]['metabox'] = $taxonomy->hierarchical ? $taxonomy->name . 'div' : 'tagsdiv-' . $taxonomy->name;
+			// Get the taxonomy terms
+			$terms = get_terms ( array (
+				'taxonomy' => $taxonomy->name,
+				'hide_empty' => false,
+			) );
+			// Add the terms to the current taxonomy
+			$post_type_taxonomies[$taxonomy->name]['terms'] = array_column( (array) $terms, 'name', 'term_taxonomy_id' );
+		}
+		// Set an empty array of terms
+		$post_terms = array();
+		// Create an array of post terms
+		foreach( (array) $taxonomies as $taxonomy ) {
+			// Get the taxonomy terms
+			$terms = get_the_terms( $post, $taxonomy );
+			// Add the terms to the current taxonomy
+			$post_terms[$taxonomy] = array_column( (array) $terms, 'name', 'term_taxonomy_id' );
+		}
+		// Localize the script
+		wp_localize_script( 'primary_term_admin', 'primaryTerm', array (
+			'taxonomies' => $post_type_taxonomies,
+			'terms' => $post_terms,
+		) );
+	}
+
+	wp_enqueue_script( 'primary_term_admin' );	
 
 }
 
