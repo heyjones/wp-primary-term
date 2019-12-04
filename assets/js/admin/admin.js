@@ -4,7 +4,10 @@ const {jQuery} = window;
 
 	$( document ).ready( function() {
 
-		$.each( window.primaryTerm.taxonomies, function( taxonomy, data ){
+		// Extract the localized data
+		const {taxonomies, meta} = window.primaryTerm;
+
+		$.each( taxonomies, function( taxonomy, data ){
 
 			const metabox = $( `#${data.metabox}` );
 			const inside = metabox.find( '.inside' );
@@ -15,6 +18,7 @@ const {jQuery} = window;
 			select.name = `primary-term_${ taxonomy }`;
 
 			const option = document.createElement( 'option' );
+			option.value = '';
 			option.text = 'Select one...';
 			select.append( option );
 
@@ -22,6 +26,7 @@ const {jQuery} = window;
 				const option = document.createElement( 'option' );
 				option.value = value;
 				option.text = text;
+				option.selected = meta[select.id] == value;
 				select.append( option );
 			} );
 

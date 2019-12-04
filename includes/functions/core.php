@@ -204,10 +204,16 @@ function admin_scripts() {
 			// Add the terms to the current taxonomy
 			$post_terms[$taxonomy] = array_column( (array) $terms, 'name', 'term_taxonomy_id' );
 		}
+		// Create an array of post meta
+		foreach( (array) $taxonomies as $taxonomy ){
+			$key = 'primary-term_' . $taxonomy;
+			$post_meta[$key] = get_post_meta( $post->ID, $key, true );
+		}
 		// Localize the script
 		wp_localize_script( 'primary_term_admin', 'primaryTerm', array (
 			'taxonomies' => $post_type_taxonomies,
 			'terms' => $post_terms,
+			'meta' => $post_meta,
 		) );
 	}
 
