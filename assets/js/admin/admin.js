@@ -5,7 +5,7 @@ const {jQuery} = window;
 	$( document ).ready( function() {
 
 		// Extract the localized data
-		const {taxonomies, meta} = window.primaryTerm;
+		const {taxonomies, terms, meta} = window.primaryTerm;
 
 		$.each( taxonomies, function( taxonomy, data ){
 
@@ -23,11 +23,13 @@ const {jQuery} = window;
 			select.append( option );
 
 			$.each( data.terms, function( value, text ){
-				const option = document.createElement( 'option' );
-				option.value = value;
-				option.text = text;
-				option.selected = meta[select.id] == value;
-				select.append( option );
+				if( value in terms[taxonomy] ){
+					const option = document.createElement( 'option' );
+					option.value = value;
+					option.text = text;
+					option.selected = meta[select.id] == value;
+					select.append( option );
+				}
 			} );
 
 			const label = document.createElement( 'label' );
