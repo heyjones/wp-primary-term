@@ -20,8 +20,15 @@ define( 'PRIMARY_TERM_INC', PRIMARY_TERM_PATH . 'includes/' );
 
 // Include files.
 require_once PRIMARY_TERM_INC . 'functions/core.php';
-require_once PRIMARY_TERM_INC . 'functions/register_post_meta.php';
-require_once PRIMARY_TERM_INC . 'functions/save_post.php';
+
+// Include actions.
+foreach( glob( PRIMARY_TERM_INC . 'actions/*.php' ) as $action ){
+    include $action;
+}
+// Include filters.
+foreach( glob( PRIMARY_TERM_INC . 'filters/*.php' ) as $filter ){
+    include $filter;
+}
 
 // Activation/Deactivation.
 register_activation_hook( __FILE__, '\PrimaryTerm\Core\activate' );
