@@ -72,7 +72,7 @@
     "stylelint-webpack-plugin": "^0.10.5",
     "terser": "^3.17.0",
     "webpack": "^4.41.1",
-    "webpack-cli": "^3.3.9",
+    "webpack-cli": "^3.3.12",
     "webpack-fix-style-only-entries": "^0.2.2",
     "webpack-merge": "^4.2.2",
     "webpackbar": "^3.2.0"
